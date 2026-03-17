@@ -1,0 +1,342 @@
+{
+  "common": {
+    "appName": "TorneoApp",
+    "tagline": "Desafios e Torneios Esportivos",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "logout": "Sair",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "view": "Ver",
+    "back": "Voltar",
+    "next": "Proximo",
+    "previous": "Anterior",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "none": "Nenhum",
+    "yes": "Sim",
+    "no": "Nao"
+  },
+  "nav": {
+    "home": "Inicio",
+    "dashboard": "Painel",
+    "challenges": "Desafios",
+    "tournaments": "Torneios",
+    "team": "Meu Time",
+    "players": "Jogadores",
+    "profile": "Perfil",
+    "settings": "Configuracoes",
+    "notifications": "Notificacoes"
+  },
+  "landing": {
+    "hero": {
+      "title": "Organize Desafios e Torneios Como um Profissional",
+      "subtitle": "A plataforma definitiva para times amadores. Desafie rivais, gerencie torneios e controle seu time de qualquer lugar.",
+      "cta": "Cadastrar Meu Time",
+      "ctaSecondary": "Ver Como Funciona"
+    },
+    "features": {
+      "title": "Tudo que Voce Precisa para seu Time",
+      "subtitle": "Ferramentas poderosas desenhadas para o futebol amador",
+      "challenges": {
+        "title": "Sistema de Desafios",
+        "description": "Desafie qualquer time registrado. Negocie data, local e ate apostas de forma segura."
+      },
+      "tournaments": {
+        "title": "Gestao de Torneios",
+        "description": "Participe de torneios organizados ou crie os seus. Tabela automatica e classificacao em tempo real."
+      },
+      "team": {
+        "title": "Controle de Time",
+        "description": "Administre jogadores, estatisticas e desempenho. Tudo em um so lugar."
+      },
+      "finance": {
+        "title": "Modulo Financeiro",
+        "description": "Controle mensalidades, premios e gastos do time. Transparencia total."
+      },
+      "communication": {
+        "title": "Comunicacao Integrada",
+        "description": "Chat com rivais, notificacoes de jogos e lembretes automaticos."
+      },
+      "bilingual": {
+        "title": "Bilingue ES/PT",
+        "description": "Perfeito para a fronteira. Disponivel em espanhol e portugues."
+      }
+    },
+    "howItWorks": {
+      "title": "Como Funciona",
+      "subtitle": "Em 3 passos simples",
+      "step1": {
+        "title": "Cadastre seu Time",
+        "description": "Crie sua conta, adicione as informacoes do seu time e os jogadores."
+      },
+      "step2": {
+        "title": "Desafie ou Inscreva-se",
+        "description": "Busque rivais para desafiar ou inscreva-se em torneios da sua regiao."
+      },
+      "step3": {
+        "title": "Jogue e Venca",
+        "description": "Confirme resultados, acumule pontos e suba no ranking."
+      }
+    },
+    "pricing": {
+      "title": "Planos para Cada Time",
+      "subtitle": "Comece gratis, escale quando precisar",
+      "free": {
+        "name": "Basico",
+        "price": "Gratis",
+        "description": "Para times que estao comecando",
+        "features": [
+          "Ate 15 jogadores",
+          "5 desafios por mes",
+          "Participar em torneios",
+          "Estatisticas basicas"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "R$49.99",
+        "period": "/mes",
+        "description": "Para times competitivos",
+        "features": [
+          "Jogadores ilimitados",
+          "Desafios ilimitados",
+          "Criar torneios privados",
+          "Estatisticas avancadas",
+          "Modulo financeiro",
+          "Suporte prioritario"
+        ]
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "R$129.99",
+        "period": "/mes",
+        "description": "Para ligas e organizadores",
+        "features": [
+          "Tudo do Pro",
+          "Multiplos times",
+          "Criar torneios publicos",
+          "Transmissao ao vivo",
+          "API de integracao",
+          "Suporte dedicado"
+        ]
+      },
+      "cta": "Comecar Agora"
+    },
+    "cta": {
+      "title": "Pronto para Levar seu Time ao Proximo Nivel?",
+      "subtitle": "Junte-se a centenas de times que ja estao usando TorneoApp",
+      "button": "Cadastrar Meu Time Gratis"
+    },
+    "footer": {
+      "description": "A plataforma lider para gestao de torneios e desafios esportivos amadores no Paraguai e Brasil.",
+      "links": {
+        "product": "Produto",
+        "features": "Recursos",
+        "pricing": "Precos",
+        "download": "Baixar App"
+      },
+      "company": {
+        "title": "Empresa",
+        "about": "Sobre Nos",
+        "contact": "Contato",
+        "careers": "Carreiras"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Termos",
+        "privacy": "Privacidade"
+      },
+      "copyright": "TorneoApp. Todos os direitos reservados."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bem-vindo de Volta",
+      "subtitle": "Entre na sua conta para continuar",
+      "email": "E-mail",
+      "password": "Senha",
+      "rememberMe": "Lembrar-me",
+      "forgotPassword": "Esqueceu sua senha?",
+      "submit": "Entrar",
+      "noAccount": "Nao tem conta?",
+      "registerLink": "Cadastre-se aqui"
+    },
+    "register": {
+      "title": "Cadastre seu Time",
+      "subtitle": "Crie uma conta para comecar",
+      "name": "Seu nome completo",
+      "email": "E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar senha",
+      "teamName": "Nome do time",
+      "city": "Cidade",
+      "country": "Pais",
+      "submit": "Criar Conta",
+      "hasAccount": "Ja tem conta?",
+      "loginLink": "Faca login"
+    },
+    "errors": {
+      "invalidCredentials": "Credenciais invalidas",
+      "emailRequired": "O e-mail e obrigatorio",
+      "passwordRequired": "A senha e obrigatoria",
+      "passwordMismatch": "As senhas nao coincidem"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bem-vindo",
+    "overview": "Resumo",
+    "stats": {
+      "matchesPlayed": "Jogos Disputados",
+      "wins": "Vitorias",
+      "points": "Pontos",
+      "ranking": "Ranking"
+    },
+    "recentChallenges": "Desafios Recentes",
+    "upcomingMatches": "Proximos Jogos",
+    "pendingActions": "Acoes Pendentes",
+    "noUpcoming": "Nao ha jogos proximos",
+    "noPending": "Nao ha acoes pendentes"
+  },
+  "challenges": {
+    "title": "Desafios",
+    "new": "Novo Desafio",
+    "sent": "Enviados",
+    "received": "Recebidos",
+    "history": "Historico",
+    "status": {
+      "pending": "Pendente",
+      "negotiating": "Negociando",
+      "accepted": "Aceito",
+      "rejected": "Rejeitado",
+      "completed": "Completado",
+      "cancelled": "Cancelado"
+    },
+    "form": {
+      "selectTeam": "Selecionar Time Rival",
+      "date": "Data Proposta",
+      "time": "Horario",
+      "venue": "Campo/Local",
+      "betAmount": "Valor Aposta (opcional)",
+      "message": "Mensagem ao Rival",
+      "submit": "Enviar Desafio"
+    },
+    "actions": {
+      "accept": "Aceitar",
+      "reject": "Rejeitar",
+      "counterPropose": "Contrapropor",
+      "confirmResult": "Confirmar Resultado",
+      "viewDetails": "Ver Detalhes"
+    },
+    "details": {
+      "challenger": "Desafiante",
+      "challenged": "Desafiado",
+      "proposedDate": "Data Proposta",
+      "venue": "Local",
+      "bet": "Aposta",
+      "messages": "Mensagens",
+      "result": "Resultado"
+    },
+    "empty": {
+      "sent": "Voce nao enviou nenhum desafio",
+      "received": "Voce nao tem desafios pendentes",
+      "history": "Nao ha desafios no historico"
+    }
+  },
+  "team": {
+    "title": "Meu Time",
+    "info": "Informacoes",
+    "players": "Jogadores",
+    "stats": "Estatisticas",
+    "addPlayer": "Adicionar Jogador",
+    "editTeam": "Editar Time",
+    "details": {
+      "founded": "Fundado",
+      "city": "Cidade",
+      "president": "Presidente",
+      "colors": "Cores"
+    },
+    "playerForm": {
+      "name": "Nome",
+      "number": "Numero",
+      "position": "Posicao",
+      "positions": {
+        "goalkeeper": "Goleiro",
+        "defender": "Defensor",
+        "midfielder": "Meio-campista",
+        "forward": "Atacante"
+      }
+    },
+    "playerStats": {
+      "goals": "Gols",
+      "assists": "Assistencias",
+      "yellowCards": "Amarelos",
+      "redCards": "Vermelhos",
+      "matches": "Jogos"
+    }
+  },
+  "tournaments": {
+    "title": "Torneios",
+    "active": "Ativos",
+    "upcoming": "Proximos",
+    "finished": "Finalizados",
+    "standings": "Classificacao",
+    "fixtures": "Tabela",
+    "myMatches": "Meus Jogos",
+    "details": {
+      "startDate": "Inicio",
+      "endDate": "Fim",
+      "teams": "Times",
+      "type": "Formato",
+      "types": {
+        "league": "Liga",
+        "cup": "Copa",
+        "groups": "Grupos"
+      }
+    },
+    "table": {
+      "position": "Pos",
+      "team": "Time",
+      "played": "J",
+      "won": "V",
+      "drawn": "E",
+      "lost": "D",
+      "goalsFor": "GP",
+      "goalsAgainst": "GC",
+      "goalDiff": "SG",
+      "points": "Pts"
+    },
+    "empty": "Nao ha torneios disponiveis"
+  },
+  "notifications": {
+    "title": "Notificacoes",
+    "markAllRead": "Marcar todas como lidas",
+    "empty": "Nao ha notificacoes",
+    "types": {
+      "challengeReceived": "Novo desafio recebido",
+      "challengeAccepted": "Seu desafio foi aceito",
+      "challengeRejected": "Seu desafio foi rejeitado",
+      "matchReminder": "Lembrete de jogo",
+      "resultPending": "Confirme o resultado do jogo"
+    }
+  },
+  "profile": {
+    "title": "Meu Perfil",
+    "personalInfo": "Informacoes Pessoais",
+    "changePassword": "Alterar Senha",
+    "language": "Idioma",
+    "theme": "Tema",
+    "themes": {
+      "light": "Claro",
+      "dark": "Escuro",
+      "system": "Sistema"
+    }
+  }
+}

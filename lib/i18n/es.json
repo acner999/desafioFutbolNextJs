@@ -1,0 +1,342 @@
+{
+  "common": {
+    "appName": "TorneoApp",
+    "tagline": "Desafios y Torneos Deportivos",
+    "login": "Iniciar Sesion",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesion",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "view": "Ver",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Exito",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "none": "Ninguno",
+    "yes": "Si",
+    "no": "No"
+  },
+  "nav": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "challenges": "Desafios",
+    "tournaments": "Torneos",
+    "team": "Mi Equipo",
+    "players": "Jugadores",
+    "profile": "Perfil",
+    "settings": "Configuracion",
+    "notifications": "Notificaciones"
+  },
+  "landing": {
+    "hero": {
+      "title": "Organiza Desafios y Torneos Como un Profesional",
+      "subtitle": "La plataforma definitiva para equipos amateur. Desafia a rivales, gestiona torneos y lleva el control de tu equipo desde cualquier lugar.",
+      "cta": "Registrar Mi Equipo",
+      "ctaSecondary": "Ver Como Funciona"
+    },
+    "features": {
+      "title": "Todo lo que Necesitas para tu Equipo",
+      "subtitle": "Herramientas poderosas disenadas para el futbol amateur",
+      "challenges": {
+        "title": "Sistema de Desafios",
+        "description": "Desafia a cualquier equipo registrado. Negocia fecha, lugar y hasta apuestas de forma segura."
+      },
+      "tournaments": {
+        "title": "Gestion de Torneos",
+        "description": "Participa en torneos organizados o crea los tuyos. Fixture automatico y tabla en tiempo real."
+      },
+      "team": {
+        "title": "Control de Equipo",
+        "description": "Administra jugadores, estadisticas y rendimiento. Todo en un solo lugar."
+      },
+      "finance": {
+        "title": "Modulo Financiero",
+        "description": "Controla cuotas, premios y gastos del equipo. Transparencia total."
+      },
+      "communication": {
+        "title": "Comunicacion Integrada",
+        "description": "Chat con rivales, notificaciones de partidos y recordatorios automaticos."
+      },
+      "bilingual": {
+        "title": "Bilingue ES/PT",
+        "description": "Perfecto para la frontera. Disponible en espanol y portugues."
+      }
+    },
+    "howItWorks": {
+      "title": "Como Funciona",
+      "subtitle": "En 3 simples pasos",
+      "step1": {
+        "title": "Registra tu Equipo",
+        "description": "Crea tu cuenta, agrega la informacion de tu equipo y los jugadores."
+      },
+      "step2": {
+        "title": "Desafia o Inscribete",
+        "description": "Busca rivales para desafiar o inscribete en torneos de tu zona."
+      },
+      "step3": {
+        "title": "Juega y Gana",
+        "description": "Confirma resultados, acumula puntos y sube en el ranking."
+      }
+    },
+    "pricing": {
+      "title": "Planes para Cada Equipo",
+      "subtitle": "Comienza gratis, escala cuando lo necesites",
+      "free": {
+        "name": "Basico",
+        "price": "Gratis",
+        "description": "Para equipos que empiezan",
+        "features": [
+          "Hasta 15 jugadores",
+          "5 desafios por mes",
+          "Participar en torneos",
+          "Estadisticas basicas"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$9.99",
+        "period": "/mes",
+        "description": "Para equipos competitivos",
+        "features": [
+          "Jugadores ilimitados",
+          "Desafios ilimitados",
+          "Crear torneos privados",
+          "Estadisticas avanzadas",
+          "Modulo financiero",
+          "Soporte prioritario"
+        ]
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "$24.99",
+        "period": "/mes",
+        "description": "Para ligas y organizadores",
+        "features": [
+          "Todo de Pro",
+          "Multiples equipos",
+          "Crear torneos publicos",
+          "Transmision en vivo",
+          "API de integracion",
+          "Soporte dedicado"
+        ]
+      },
+      "cta": "Comenzar Ahora"
+    },
+    "cta": {
+      "title": "Listo para Llevar tu Equipo al Siguiente Nivel?",
+      "subtitle": "Unete a cientos de equipos que ya estan usando TorneoApp",
+      "button": "Registrar Mi Equipo Gratis"
+    },
+    "footer": {
+      "description": "La plataforma lider para gestion de torneos y desafios deportivos amateur en Paraguay y Brasil.",
+      "links": {
+        "product": "Producto",
+        "features": "Caracteristicas",
+        "pricing": "Precios",
+        "download": "Descargar App"
+      },
+      "company": {
+        "title": "Empresa",
+        "about": "Nosotros",
+        "contact": "Contacto",
+        "careers": "Empleos"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Terminos",
+        "privacy": "Privacidad"
+      },
+      "copyright": "TorneoApp. Todos los derechos reservados."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de Vuelta",
+      "subtitle": "Ingresa a tu cuenta para continuar",
+      "email": "Correo electronico",
+      "password": "Contrasena",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "Olvidaste tu contrasena?",
+      "submit": "Iniciar Sesion",
+      "noAccount": "No tienes cuenta?",
+      "registerLink": "Registrate aqui"
+    },
+    "register": {
+      "title": "Registra tu Equipo",
+      "subtitle": "Crea una cuenta para comenzar",
+      "name": "Tu nombre completo",
+      "email": "Correo electronico",
+      "password": "Contrasena",
+      "confirmPassword": "Confirmar contrasena",
+      "teamName": "Nombre del equipo",
+      "city": "Ciudad",
+      "country": "Pais",
+      "submit": "Crear Cuenta",
+      "hasAccount": "Ya tienes cuenta?",
+      "loginLink": "Inicia sesion"
+    },
+    "errors": {
+      "invalidCredentials": "Credenciales invalidas",
+      "emailRequired": "El correo es requerido",
+      "passwordRequired": "La contrasena es requerida",
+      "passwordMismatch": "Las contrasenas no coinciden"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bienvenido",
+    "overview": "Resumen",
+    "stats": {
+      "matchesPlayed": "Partidos Jugados",
+      "wins": "Victorias",
+      "points": "Puntos",
+      "ranking": "Ranking"
+    },
+    "recentChallenges": "Desafios Recientes",
+    "upcomingMatches": "Proximos Partidos",
+    "pendingActions": "Acciones Pendientes",
+    "noUpcoming": "No hay partidos proximos",
+    "noPending": "No hay acciones pendientes"
+  },
+  "challenges": {
+    "title": "Desafios",
+    "new": "Nuevo Desafio",
+    "sent": "Enviados",
+    "received": "Recibidos",
+    "history": "Historial",
+    "status": {
+      "pending": "Pendiente",
+      "negotiating": "Negociando",
+      "accepted": "Aceptado",
+      "rejected": "Rechazado",
+      "completed": "Completado",
+      "cancelled": "Cancelado"
+    },
+    "form": {
+      "selectTeam": "Seleccionar Equipo Rival",
+      "date": "Fecha Propuesta",
+      "time": "Hora",
+      "venue": "Cancha/Lugar",
+      "betAmount": "Monto Apuesta (opcional)",
+      "message": "Mensaje al Rival",
+      "submit": "Enviar Desafio"
+    },
+    "actions": {
+      "accept": "Aceptar",
+      "reject": "Rechazar",
+      "counterPropose": "Contraproponer",
+      "confirmResult": "Confirmar Resultado",
+      "viewDetails": "Ver Detalles"
+    },
+    "details": {
+      "challenger": "Retador",
+      "challenged": "Retado",
+      "proposedDate": "Fecha Propuesta",
+      "venue": "Lugar",
+      "bet": "Apuesta",
+      "messages": "Mensajes",
+      "result": "Resultado"
+    },
+    "empty": {
+      "sent": "No has enviado ningun desafio",
+      "received": "No tienes desafios pendientes",
+      "history": "No hay desafios en el historial"
+    }
+  },
+  "team": {
+    "title": "Mi Equipo",
+    "info": "Informacion",
+    "players": "Jugadores",
+    "stats": "Estadisticas",
+    "addPlayer": "Agregar Jugador",
+    "editTeam": "Editar Equipo",
+    "details": {
+      "founded": "Fundado",
+      "city": "Ciudad",
+      "president": "Presidente",
+      "colors": "Colores"
+    },
+    "playerForm": {
+      "name": "Nombre",
+      "number": "Numero",
+      "position": "Posicion",
+      "positions": {
+        "goalkeeper": "Portero",
+        "defender": "Defensor",
+        "midfielder": "Mediocampista",
+        "forward": "Delantero"
+      }
+    },
+    "playerStats": {
+      "goals": "Goles",
+      "assists": "Asistencias",
+      "yellowCards": "Amarillas",
+      "redCards": "Rojas",
+      "matches": "Partidos"
+    }
+  },
+  "tournaments": {
+    "title": "Torneos",
+    "active": "Activos",
+    "upcoming": "Proximos",
+    "finished": "Finalizados",
+    "standings": "Tabla de Posiciones",
+    "fixtures": "Fixture",
+    "myMatches": "Mis Partidos",
+    "details": {
+      "startDate": "Inicio",
+      "endDate": "Fin",
+      "teams": "Equipos",
+      "type": "Formato",
+      "types": {
+        "league": "Liga",
+        "cup": "Copa",
+        "groups": "Grupos"
+      }
+    },
+    "table": {
+      "position": "Pos",
+      "team": "Equipo",
+      "played": "PJ",
+      "won": "PG",
+      "drawn": "PE",
+      "lost": "PP",
+      "goalsFor": "GF",
+      "goalsAgainst": "GC",
+      "goalDiff": "DG",
+      "points": "Pts"
+    },
+    "empty": "No hay torneos disponibles"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "markAllRead": "Marcar todas como leidas",
+    "empty": "No hay notificaciones",
+    "types": {
+      "challengeReceived": "Nuevo desafio recibido",
+      "challengeAccepted": "Tu desafio fue aceptado",
+      "challengeRejected": "Tu desafio fue rechazado",
+      "matchReminder": "Recordatorio de partido",
+      "resultPending": "Confirma el resultado del partido"
+    }
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "personalInfo": "Informacion Personal",
+    "changePassword": "Cambiar Contrasena",
+    "language": "Idioma",
+    "theme": "Tema",
+    "themes": {
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    }
+  }
+}

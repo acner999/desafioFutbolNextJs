@@ -1,0 +1,135 @@
+import type { Player } from '@/lib/types'
+
+export const players: Player[] = [
+  // Deportivo Encarnacion (team-1)
+  {
+    id: 'player-1',
+    name: 'Juan Martinez',
+    number: 1,
+    position: 'goalkeeper',
+    teamId: 'team-1',
+    stats: { goals: 0, assists: 1, yellowCards: 2, redCards: 0, matchesPlayed: 42 },
+  },
+  {
+    id: 'player-2',
+    name: 'Diego Fernandez',
+    number: 4,
+    position: 'defender',
+    teamId: 'team-1',
+    stats: { goals: 3, assists: 2, yellowCards: 8, redCards: 1, matchesPlayed: 40 },
+  },
+  {
+    id: 'player-3',
+    name: 'Pablo Acosta',
+    number: 6,
+    position: 'defender',
+    teamId: 'team-1',
+    stats: { goals: 2, assists: 1, yellowCards: 5, redCards: 0, matchesPlayed: 38 },
+  },
+  {
+    id: 'player-4',
+    name: 'Marcos Lopez',
+    number: 3,
+    position: 'defender',
+    teamId: 'team-1',
+    stats: { goals: 1, assists: 4, yellowCards: 6, redCards: 0, matchesPlayed: 35 },
+  },
+  {
+    id: 'player-5',
+    name: 'Andres Gimenez',
+    number: 8,
+    position: 'midfielder',
+    teamId: 'team-1',
+    stats: { goals: 8, assists: 15, yellowCards: 4, redCards: 0, matchesPlayed: 44 },
+  },
+  {
+    id: 'player-6',
+    name: 'Ricardo Ortiz',
+    number: 10,
+    position: 'midfielder',
+    teamId: 'team-1',
+    stats: { goals: 12, assists: 18, yellowCards: 3, redCards: 0, matchesPlayed: 43 },
+  },
+  {
+    id: 'player-7',
+    name: 'Carlos Ramirez',
+    number: 7,
+    position: 'midfielder',
+    teamId: 'team-1',
+    stats: { goals: 6, assists: 9, yellowCards: 2, redCards: 0, matchesPlayed: 41 },
+  },
+  {
+    id: 'player-8',
+    name: 'Luis Sanchez',
+    number: 11,
+    position: 'forward',
+    teamId: 'team-1',
+    stats: { goals: 22, assists: 8, yellowCards: 3, redCards: 1, matchesPlayed: 45 },
+  },
+  {
+    id: 'player-9',
+    name: 'Fernando Dominguez',
+    number: 9,
+    position: 'forward',
+    teamId: 'team-1',
+    stats: { goals: 18, assists: 5, yellowCards: 4, redCards: 0, matchesPlayed: 42 },
+  },
+  {
+    id: 'player-10',
+    name: 'Gabriel Vera',
+    number: 5,
+    position: 'midfielder',
+    teamId: 'team-1',
+    stats: { goals: 4, assists: 7, yellowCards: 7, redCards: 1, matchesPlayed: 39 },
+  },
+  // FC Posadas (team-2)
+  {
+    id: 'player-11',
+    name: 'Rafael Santos',
+    number: 1,
+    position: 'goalkeeper',
+    teamId: 'team-2',
+    stats: { goals: 0, assists: 0, yellowCards: 1, redCards: 0, matchesPlayed: 40 },
+  },
+  {
+    id: 'player-12',
+    name: 'Bruno Oliveira',
+    number: 9,
+    position: 'forward',
+    teamId: 'team-2',
+    stats: { goals: 25, assists: 10, yellowCards: 2, redCards: 0, matchesPlayed: 42 },
+  },
+  {
+    id: 'player-13',
+    name: 'Thiago Costa',
+    number: 10,
+    position: 'midfielder',
+    teamId: 'team-2',
+    stats: { goals: 10, assists: 20, yellowCards: 3, redCards: 0, matchesPlayed: 41 },
+  },
+  // Atletico Frontera (team-3)
+  {
+    id: 'player-14',
+    name: 'Jorge Benitez',
+    number: 1,
+    position: 'goalkeeper',
+    teamId: 'team-3',
+    stats: { goals: 0, assists: 0, yellowCards: 2, redCards: 0, matchesPlayed: 36 },
+  },
+  {
+    id: 'player-15',
+    name: 'Sebastian Romero',
+    number: 9,
+    position: 'forward',
+    teamId: 'team-3',
+    stats: { goals: 18, assists: 6, yellowCards: 5, redCards: 1, matchesPlayed: 38 },
+  },
+]
+
+export function getPlayersByTeam(teamId: string): Player[] {
+  return players.filter(player => player.teamId === teamId)
+}
+
+export function getPlayerById(id: string): Player | undefined {
+  return players.find(player => player.id === id)
+}

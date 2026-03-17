@@ -1,0 +1,1 @@
+node scripts/run-migrations.js; node scripts/seed-db.js; node scripts/test-db.js

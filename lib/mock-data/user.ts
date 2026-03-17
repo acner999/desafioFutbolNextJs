@@ -1,0 +1,52 @@
+import type { User, Notification } from '@/lib/types'
+
+export const currentUser: User = {
+  id: 'user-1',
+  email: 'carlos@deportivoencarnacion.com',
+  name: 'Carlos Rodriguez',
+  teamId: 'team-1',
+  role: 'president',
+}
+
+export const notifications: Notification[] = [
+  {
+    id: 'notif-1',
+    type: 'challenge_received',
+    title: 'Nuevo desafio recibido',
+    message: 'FC Posadas te ha desafiado para un partido el 25 de marzo',
+    read: false,
+    createdAt: '2026-03-15T10:00:00Z',
+    data: { challengeId: 'challenge-1' },
+  },
+  {
+    id: 'notif-2',
+    type: 'challenge_received',
+    title: 'Nuevo desafio recibido',
+    message: 'Atletico Frontera quiere la revancha',
+    read: false,
+    createdAt: '2026-03-14T14:30:00Z',
+    data: { challengeId: 'challenge-2' },
+  },
+  {
+    id: 'notif-3',
+    type: 'match_reminder',
+    title: 'Partido manana',
+    message: 'Recuerda: manana juegas vs Foz United a las 17:00',
+    read: true,
+    createdAt: '2026-03-21T09:00:00Z',
+    data: { challengeId: 'challenge-3' },
+  },
+  {
+    id: 'notif-4',
+    type: 'challenge_accepted',
+    title: 'Desafio aceptado',
+    message: 'Foz United acepto tu desafio para el 22 de marzo',
+    read: true,
+    createdAt: '2026-03-12T11:00:00Z',
+    data: { challengeId: 'challenge-3' },
+  },
+]
+
+export function getUnreadNotifications(): Notification[] {
+  return notifications.filter(n => !n.read)
+}
