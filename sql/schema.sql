@@ -152,6 +152,14 @@ CREATE TABLE IF NOT EXISTS notifications (
   created_at TIMESTAMP WITH TIME ZONE,
   data JSONB
 );
+-- Password reset tokens for email-based reset flows
+CREATE TABLE IF NOT EXISTS password_resets (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    token TEXT NOT NULL,
+    expires_at TIMESTAMPTZ NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
 
 DO $$
 BEGIN
