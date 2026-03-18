@@ -56,10 +56,12 @@ export default function RegisterPage() {
       return
     }
 
-    const success = await register(formData)
+    const result = await register(formData)
     
-    if (success) {
+    if (result.success) {
       router.push('/dashboard')
+    } else {
+      setError(result.error || t('auth.errors.registrationFailed'))
     }
   }
 

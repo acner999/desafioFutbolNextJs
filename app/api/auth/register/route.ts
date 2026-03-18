@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       await query(
         `INSERT INTO players (name, number, position, team_id, stats)
          VALUES ($1,$2,$3,$4,$5)
-         ON CONFLICT (name) DO NOTHING`,
+         ON CONFLICT (name, team_id) DO NOTHING`,
         [
           name,
           null,
@@ -68,7 +68,11 @@ export async function POST(req: Request) {
       console.warn('[register] invite accept failed', e)
     }
     return NextResponse.json({ user: res.rows[0] })
-  } catch (err) {
+  } catch (err: any) {
+    // Check for unique constraint violation on email
+    if (err?.code === '23505' && err?.constraint === 'users_email_key') {
+      return NextResponse.json({ error: 'Email already registered' }, { status: 409 })
+    }
     console.error('[register] error', err)
     return NextResponse.json({ error: 'Registration failed' }, { status: 500 })
   }

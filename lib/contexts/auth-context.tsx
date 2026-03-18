@@ -9,7 +9,7 @@ interface AuthContextType {
   isAuthenticated: boolean
   isLoading: boolean
   login: (email: string, password: string) => Promise<boolean>
-  register: (data: RegisterData) => Promise<boolean>
+  register: (data: RegisterData) => Promise<{ success: boolean; error?: string }>
   logout: () => Promise<void>
 }
 
@@ -48,7 +48,10 @@ function AuthContextProvider({ children }: { children: React.ReactNode }) {
       body: JSON.stringify(data),
     })
 
-    if (!res.ok) return false
+    if (!res.ok) {
+      const json = await res.json()
+      return { success: false, error: json.error || 'Registration failed' }
+    }
 
     // Sign in automatically after registration
     const json = await res.json()
@@ -57,7 +60,7 @@ function AuthContextProvider({ children }: { children: React.ReactNode }) {
       email: data.email,
       password: data.password,
     })
-    return !!signedIn?.ok
+    return { success: !!signedIn?.ok }
   }, [])
 
   const logout = useCallback(async () => {
