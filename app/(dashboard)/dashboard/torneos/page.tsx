@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useLanguage } from '@/lib/i18n'
 import { useAuth } from '@/lib/contexts/auth-context'
-import { cn } from '@/lib/utils'
+import { cn, formatDateISO } from '@/lib/utils'
 
 const statusColors: Record<string, string> = {
   active: 'bg-accent/10 text-accent border-accent/20',
@@ -161,14 +161,14 @@ function TournamentCard({ tournament, t, teamsMap, userTeamId }: { tournament: a
             </div>
 
             {/* Dates */}
-            <div className="mt-4 flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <div className="mt-4 flex flex-wrap gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                <span>{t('tournaments.details.startDate')}: {tournament.startDate}</span>
+                <span>{t('tournaments.details.startDate')}: {formatDateISO(tournament.startDate)}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                <span>{t('tournaments.details.endDate')}: {tournament.endDate}</span>
+                <span>{t('tournaments.details.endDate')}: {formatDateISO(tournament.endDate)}</span>
               </div>
             </div>
           </div>

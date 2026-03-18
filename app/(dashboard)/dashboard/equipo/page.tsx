@@ -15,11 +15,13 @@ import {
 } from '@/components/ui/table'
 import { useLanguage } from '@/lib/i18n'
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useAuth } from '@/lib/contexts/auth-context'
 
 export default function EquipoPage() {
   const { t } = useLanguage()
   const { user } = useAuth()
+  const InvitesModal = dynamic(() => import('@/components/team/InvitesModal'), { ssr: false })
   const [team, setTeam] = useState<any | null>(null)
   const [players, setPlayers] = useState<any[]>([])
 
@@ -65,10 +67,21 @@ export default function EquipoPage() {
             Administra la informacion de tu equipo
           </p>
         </div>
-        <Button variant="outline" className="gap-2">
-          <Edit className="h-4 w-4" />
-          {t('team.editTeam')}
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" className="gap-2">
+            <Plus className="h-4 w-4" />
+            {t('team.invite')}
+          </Button>
+          {/* Invites modal */}
+          <div>
+            {/* Will lazy-load modal component */}
+            <InvitesModal />
+          </div>
+          <Button variant="outline" className="gap-2">
+            <Edit className="h-4 w-4" />
+            {t('team.editTeam')}
+          </Button>
+        </div>
       </div>
 
       {/* Team Info Card */}

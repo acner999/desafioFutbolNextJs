@@ -90,30 +90,72 @@ export const authOptions = {
   ].filter(Boolean),
   callbacks: {
     async jwt({ token, user, profile, account }) {
-      if (user) {
-        token.role = (user as any).role
-        token.teamId = (user as any).teamId
-        token.cedula = (user as any).cedula
-      }
-      if (profile && account) {
-        const socialUser = await upsertSocialUser(profile, account.provider)
-        if (socialUser) {
-          token.role = socialUser.role
-          token.teamId = socialUser.teamId
-          token.cedula = socialUser.cedula
+      try {
+        if (user) {
+          token.role = (user as any).role
+          token.teamId = (user as any).teamId
+          token.cedula = (user as any).cedula
         }
+        if (profile && account) {
+          try {
+            const socialUser = await upsertSocialUser(profile, account.provider)
+            if (socialUser) {
+              token.role = socialUser.role
+              token.teamId = socialUser.teamId
+              token.cedula = socialUser.cedula
+            }
+          } catch (e) {
+            console.error('[nextauth][jwt] upsertSocialUser error', e)
+          }
+        }
+        return token
+      } catch (err) {
+        console.error('[nextauth][jwt] error', err)
+        return token
       }
-      return token
     },
     async session({ session, token }) {
-      if (session.user) {
-        ;(session.user as any).role = (token as any).role
-        ;(session.user as any).teamId = (token as any).teamId
-        ;(session.user as any).cedula = (token as any).cedula
+      try {
+        if (session.user) {
+          ;(session.user as any).role = (token as any).role
+          ;(session.user as any).teamId = (token as any).teamId
+          ;(session.user as any).cedula = (token as any).cedula
+        }
+        return session
+      } catch (err) {
+        console.error('[nextauth][session] error', err)
+        return session
       }
-      return session
     },
   },
 }
 
-export default NextAuth(authOptions)
+// Create NextAuth handler and export method-specific handlers for App Router
+const _nextAuthHandler = NextAuth(authOptions)
+
+async function handlerWrapper(req: Request) {
+  try {
+    // Build a RouteHandlerContext-like object with the dynamic `nextauth` segments
+    // so NextAuth's route handler can read `context.params.nextauth`.
+    const url = new URL(req.url)
+    const pathname = url.pathname || ''
+    const base = '/api/auth/'
+    const nextauth = pathname.startsWith(base)
+      ? pathname.slice(base.length).split('/').filter(Boolean)
+      : []
+
+    // Delegate to NextAuth handler with a fake `res` that contains `params`.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const result = await _nextAuthHandler(req, { params: { nextauth } })
+    return result
+  } catch (err) {
+    console.error('[nextauth][handler] unexpected error', err)
+    return new Response(JSON.stringify({ error: 'internal_server_error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+}
+
+export { handlerWrapper as GET, handlerWrapper as POST }

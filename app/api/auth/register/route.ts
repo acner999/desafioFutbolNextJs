@@ -53,6 +53,20 @@ export async function POST(req: Request) {
     }
 
     const res = await query('SELECT id, email, name, team_id as "teamId", role, cedula FROM users WHERE id = $1', [userId])
+    // Auto-accept pending invite if exists
+    try {
+      const inviteRes = await query(
+        `SELECT id, team_id FROM team_invites WHERE invitee_email = $1 AND status = 'pending' AND (expires_at IS NULL OR expires_at > now()) ORDER BY created_at DESC LIMIT 1`,
+        [email],
+      )
+      if (inviteRes.rowCount) {
+        const invite = inviteRes.rows[0]
+        await query('UPDATE users SET team_id = $1 WHERE id = $2', [invite.team_id, userId])
+        await query('UPDATE team_invites SET status = $1 WHERE id = $2', ['accepted', invite.id])
+      }
+    } catch (e) {
+      console.warn('[register] invite accept failed', e)
+    }
     return NextResponse.json({ user: res.rows[0] })
   } catch (err) {
     console.error('[register] error', err)

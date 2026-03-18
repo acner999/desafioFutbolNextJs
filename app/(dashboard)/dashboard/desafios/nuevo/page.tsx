@@ -66,7 +66,9 @@ export default function NuevoDesafioPage() {
     router.push('/dashboard/desafios')
   }
 
-  const selectedTeam = teams.find(t => t.id === formData.teamId)
+  const selectedTeam = availableTeams.find(
+    (t) => Number(t.id) === Number(formData.teamId)
+  )
 
   return (
     <div className="space-y-6">

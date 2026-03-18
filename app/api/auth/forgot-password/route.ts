@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { Pool } from 'pg';
+import nodemailer from 'nodemailer';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const transporter = nodemailer.createTransport({ sendmail: true, newline: 'unix', path: process.env.SENDMAIL_PATH || '/usr/sbin/sendmail' });
 
 export async function POST(req: Request) {
   const { email } = await req.json();
@@ -25,8 +27,19 @@ export async function POST(req: Request) {
       [userId, token, expiresAt]
     );
 
-    // TODO: send email with token link. For now return token for local testing
-    return NextResponse.json({ ok: true, token });
+    const from = process.env.EMAIL_FROM || 'no-reply@localhost';
+    const resetUrl = `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/reset-password?token=${token}`;
+    await transporter.sendMail({
+      from,
+      to: email,
+      subject: 'Restablecer contraseña — TorneoApp',
+      text: `Sigue este enlace para restablecer tu contraseña: ${resetUrl}`,
+      html: `<p>Sigue este enlace para restablecer tu contraseña: <a href="${resetUrl}">restablecer contraseña</a></p>`,
+    });
+
+    const response: any = { ok: true };
+    if (process.env.DEV_SHOW_TOKENS === 'true') response.token = token;
+    return NextResponse.json(response);
   } finally {
     client.release();
   }

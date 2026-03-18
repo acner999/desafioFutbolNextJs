@@ -1,7 +1,7 @@
 "use client"
 
-import { use } from 'react'
 import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Calendar, Trophy } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/table'
 import { useLanguage } from '@/lib/i18n'
 import { useAuth } from '@/lib/contexts/auth-context'
-import { cn } from '@/lib/utils'
+import { cn, formatDateISO } from '@/lib/utils'
 
 const statusColors: Record<string, string> = {
   active: 'bg-accent/10 text-accent border-accent/20',
@@ -26,8 +26,9 @@ const statusColors: Record<string, string> = {
   finished: 'bg-muted text-muted-foreground border-border',
 }
 
-export default function TournamentDetailPage({ params }: { params: { id: string } }) {
-  const id = params.id
+export default function TournamentDetailPage() {
+  const params = useParams()
+  const id = params?.id
   const { t } = useLanguage()
   const { user } = useAuth()
   const [tournament, setTournament] = useState<any>(null)
@@ -82,7 +83,7 @@ export default function TournamentDetailPage({ params }: { params: { id: string 
             <h1 className="text-2xl font-bold text-foreground">{tournament.name}</h1>
             <Badge variant="outline" className={cn('capitalize', statusColors[tournament.status])}>{t(`tournaments.${tournament.status}`)}</Badge>
           </div>
-          <p className="mt-1 text-muted-foreground">{tournament.start_date ?? tournament.startDate} - {tournament.end_date ?? tournament.endDate}</p>
+          <p className="mt-1 text-muted-foreground">{formatDateISO(tournament.startDate)} - {formatDateISO(tournament.endDate)}</p>
         </div>
       </div>
 

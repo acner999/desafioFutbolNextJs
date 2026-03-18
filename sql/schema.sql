@@ -1,6 +1,7 @@
 -- Schema for TorneoApp
 BEGIN;
 
+-- Teams
 CREATE TABLE IF NOT EXISTS teams (
   id BIGSERIAL PRIMARY KEY,
   name TEXT NOT NULL,
@@ -25,10 +26,11 @@ BEGIN
 END
 $$;
 
+-- Users (created early because many tables reference it)
 CREATE TABLE IF NOT EXISTS users (
   id BIGSERIAL PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
-  email_verified TIMESTAMP WITH TIME ZONE,
+  email_verified BOOLEAN DEFAULT FALSE,
   name TEXT,
   image TEXT,
   password_hash TEXT,
@@ -68,6 +70,25 @@ CREATE TABLE IF NOT EXISTS verification_tokens (
   PRIMARY KEY (identifier, token)
 );
 
+-- Email verification tokens
+CREATE TABLE IF NOT EXISTS email_verifications (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+  token TEXT NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Password reset tokens for email-based reset flows
+CREATE TABLE IF NOT EXISTS password_resets (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+  token TEXT NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Players
 CREATE TABLE IF NOT EXISTS players (
   id BIGSERIAL PRIMARY KEY,
   name TEXT,
@@ -89,6 +110,7 @@ BEGIN
 END
 $$;
 
+-- Challenges
 CREATE TABLE IF NOT EXISTS challenges (
   id BIGSERIAL PRIMARY KEY,
   challenger_team_id BIGINT REFERENCES teams(id),
@@ -105,6 +127,7 @@ CREATE TABLE IF NOT EXISTS challenges (
   result JSONB
 );
 
+-- Tournaments
 CREATE TABLE IF NOT EXISTS tournaments (
   id BIGSERIAL PRIMARY KEY,
   name TEXT,
@@ -142,6 +165,7 @@ CREATE TABLE IF NOT EXISTS tournament_matches (
   round INTEGER
 );
 
+-- Notifications
 CREATE TABLE IF NOT EXISTS notifications (
   id BIGSERIAL PRIMARY KEY,
   user_id BIGINT REFERENCES users(id),
@@ -151,14 +175,6 @@ CREATE TABLE IF NOT EXISTS notifications (
   read BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP WITH TIME ZONE,
   data JSONB
-);
--- Password reset tokens for email-based reset flows
-CREATE TABLE IF NOT EXISTS password_resets (
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
-    token TEXT NOT NULL,
-    expires_at TIMESTAMPTZ NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT now()
 );
 
 DO $$
@@ -174,3 +190,28 @@ END
 $$;
 
 COMMIT;
+
+-- Team invites table
+BEGIN;
+CREATE TABLE IF NOT EXISTS team_invites (
+  id BIGSERIAL PRIMARY KEY,
+  team_id BIGINT NOT NULL REFERENCES teams(id) ON DELETE CASCADE,
+  inviter_user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  invitee_email TEXT NOT NULL,
+  role TEXT DEFAULT 'player',
+  status TEXT DEFAULT 'pending', -- pending, accepted, rejected
+  token TEXT NOT NULL,
+  expires_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_indexes WHERE tablename='team_invites' and indexname='team_invites_token_idx'
+  ) THEN
+    CREATE INDEX team_invites_token_idx ON team_invites(token);
+  END IF;
+END
+$$;
+COMMIT;
+

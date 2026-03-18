@@ -7,10 +7,20 @@ export async function GET(req: Request) {
     const teamId = url.searchParams.get('teamId')
     if (teamId) {
       const res = await query('SELECT * FROM tournaments WHERE teams @> $1::jsonb', [JSON.stringify([teamId])])
-      return NextResponse.json({ tournaments: res.rows })
+      const rows = (res.rows || []).map((r: any) => ({
+        ...r,
+        startDate: r.start_date || r.startDate,
+        endDate: r.end_date || r.endDate,
+      }))
+      return NextResponse.json({ tournaments: rows })
     }
     const res = await query('SELECT * FROM tournaments')
-    return NextResponse.json({ tournaments: res.rows })
+    const rows = (res.rows || []).map((r: any) => ({
+      ...r,
+      startDate: r.start_date || r.startDate,
+      endDate: r.end_date || r.endDate,
+    }))
+    return NextResponse.json({ tournaments: rows })
   } catch (err) {
     return NextResponse.json({ tournaments: [] })
   }

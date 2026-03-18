@@ -9,6 +9,8 @@ He añadido los siguientes componentes/esqueletos para completar funcionalidades
 - CI básico: `.github/workflows/ci.yml` para instalar dependencias y compilar.
 - Test script: `scripts/test-auth.js` para probar registro y flujo de olvido de contraseña localmente.
 
+- Invitaciones a equipo (`team_invites`): tabla y endpoints `POST /api/teams/invite` y `POST /api/teams/respond-invite`. Ahora el proyecto soporta crear invitaciones con token y aceptar/rechazar.
+
 Notas y siguientes pasos:
 
 - Los endpoints de email (envío) son un stub: actualmente el token se devuelve en la respuesta para tests locales. Integra un proveedor de correo (SendGrid, SES) para envío real.

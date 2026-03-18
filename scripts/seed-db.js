@@ -67,7 +67,7 @@ async function seed() {
        VALUES ($1,$2,$3,$4,$5,$6)
        ON CONFLICT (email) DO UPDATE SET name = EXCLUDED.name
        RETURNING id`,
-      [u.email, u.name, teamIdMap.get(u.teamId) ?? null, u.role, passwordHash, new Date()],
+      [u.email, u.name, teamIdMap.get(u.teamId) ?? null, u.role, passwordHash, true],
     )
     const userId = userRes.rows[0].id
 
