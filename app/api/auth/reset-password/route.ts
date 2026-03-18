@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
