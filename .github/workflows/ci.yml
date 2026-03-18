@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://localhost:5432/torneo
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node
