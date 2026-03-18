@@ -198,6 +198,9 @@ CREATE TABLE IF NOT EXISTS team_invites (
   team_id BIGINT NOT NULL REFERENCES teams(id) ON DELETE CASCADE,
   inviter_user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   invitee_email TEXT NOT NULL,
+  invitee_name TEXT,
+  invitee_number INTEGER,
+  invitee_position TEXT,
   role TEXT DEFAULT 'player',
   status TEXT DEFAULT 'pending', -- pending, accepted, rejected
   token TEXT NOT NULL,

@@ -7,7 +7,11 @@ import { useAuth } from '@/lib/contexts/auth-context'
 import { useToast } from '@/hooks/use-toast'
 import { useEffect } from 'react'
 
-export default function InvitesModal() {
+interface InvitesModalProps {
+  trigger?: React.ReactNode
+}
+
+export default function InvitesModal({ trigger }: InvitesModalProps) {
   const [open, setOpen] = React.useState(false)
   const [invites, setInvites] = React.useState<any[]>([])
   const { user } = useAuth()
@@ -57,7 +61,7 @@ export default function InvitesModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Invitaciones</Button>
+        {trigger ? trigger : <Button>Invitaciones</Button>}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

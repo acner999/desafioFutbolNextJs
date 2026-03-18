@@ -61,7 +61,29 @@ export async function POST(req: Request) {
       )
       if (inviteRes.rowCount) {
         const invite = inviteRes.rows[0]
+        // assign team and role
         await query('UPDATE users SET team_id = $1 WHERE id = $2', [invite.team_id, userId])
+
+        // create player from invite data if available (team_invites may contain invitee_* fields)
+        try {
+          const invFull = await query('SELECT invitee_name, invitee_number, invitee_position, role FROM team_invites WHERE id = $1', [invite.id])
+          const row = invFull.rows[0]
+          if (row) {
+            // set role on user if invite specified
+            if (row.role) {
+              await query('UPDATE users SET role = $1 WHERE id = $2', [row.role, userId])
+            }
+            if (row.invitee_name || row.invitee_position || row.invitee_number) {
+              const exists = await query('SELECT id FROM players WHERE name = $1 AND team_id = $2 LIMIT 1', [row.invitee_name, invite.team_id])
+              if (exists.rowCount === 0) {
+                await query('INSERT INTO players (name, number, position, team_id, stats) VALUES ($1,$2,$3,$4,$5)', [row.invitee_name, row.invitee_number || null, row.invitee_position || null, invite.team_id, JSON.stringify({})])
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('[register] failed to create player from invite', e)
+        }
+
         await query('UPDATE team_invites SET status = $1 WHERE id = $2', ['accepted', invite.id])
       }
     } catch (e) {

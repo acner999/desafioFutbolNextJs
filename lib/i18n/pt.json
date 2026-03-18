@@ -181,7 +181,8 @@
       "country": "Pais",
       "submit": "Criar Conta",
       "hasAccount": "Ja tem conta?",
-      "loginLink": "Faca login"
+      "loginLink": "Faca login",
+      "cedula": "Documento de Identidade (opcional)"
     },
     "errors": {
       "invalidCredentials": "Credenciais invalidas",
@@ -257,6 +258,7 @@
     "stats": "Estatisticas",
     "addPlayer": "Adicionar Jogador",
     "editTeam": "Editar Time",
+    "invitePlayer": "Convidar Jogador",
     "details": {
       "founded": "Fundado",
       "city": "Cidade",

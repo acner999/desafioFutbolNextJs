@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({ sendmail: true, newline: 'unix'
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { teamId, inviteeEmail, role = 'player' } = body;
+  const { teamId, inviteeEmail, role = 'player', inviteeName, inviteeNumber, inviteePosition } = body;
   if (!teamId || !inviteeEmail) return NextResponse.json({ error: 'missing fields' }, { status: 400 });
 
   // Validate session and inviter permissions
@@ -19,13 +19,23 @@ export async function POST(req: Request) {
 
   const client = await pool.connect();
   try {
-    // find inviter user
-    const inviterRes = await client.query('SELECT id, role, team_id FROM users WHERE email = $1 LIMIT 1', [session.user.email]);
-    if (inviterRes.rowCount === 0) return NextResponse.json({ error: 'inviter not found' }, { status: 404 });
+    // find inviter user (case-insensitive email match)
+    const inviterEmail = (session.user.email || '').toLowerCase().trim();
+    let inviterRes = await client.query('SELECT id, role, team_id, email FROM users WHERE LOWER(email) = $1 LIMIT 1', [inviterEmail]);
+    if (inviterRes.rowCount === 0) {
+      // create a minimal user record for the authenticated session so invites can be created
+      const up = await client.query(
+        `INSERT INTO users (email, name, role, team_id) VALUES ($1,$2,$3,$4)
+         ON CONFLICT (email) DO UPDATE SET name = EXCLUDED.name
+         RETURNING id, role, team_id, email`,
+        [inviterEmail, session.user.name || null, (session.user.role || 'normal'), session.user.teamId || null]
+      )
+      inviterRes = up
+    }
     const inviter = inviterRes.rows[0];
 
-    // check inviter is president or manager of the team
-    if (!['president', 'manager'].includes(inviter.role) || Number(inviter.team_id) !== Number(teamId)) {
+    // check inviter is president or manager of the team (case-insensitive role)
+    if (!['president', 'manager'].includes((inviter.role || '').toLowerCase()) || Number(inviter.team_id) !== Number(teamId)) {
       return NextResponse.json({ error: 'forbidden' }, { status: 403 });
     }
 
@@ -37,9 +47,9 @@ export async function POST(req: Request) {
     const expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 7); // 7 days
 
     const res = await client.query(
-      `INSERT INTO team_invites (team_id, inviter_user_id, invitee_email, role, token, expires_at)
-       VALUES ($1,$2,$3,$4,$5,$6) RETURNING id`,
-      [teamId, inviter.id, inviteeEmail, role, token, expiresAt]
+      `INSERT INTO team_invites (team_id, inviter_user_id, invitee_email, invitee_name, invitee_number, invitee_position, role, token, expires_at)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id`,
+      [teamId, inviter.id, inviteeEmail, inviteeName || null, inviteeNumber || null, inviteePosition || null, role, token, expiresAt]
     );
 
     const inviteId = res.rows[0].id;

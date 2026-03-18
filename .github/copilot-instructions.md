@@ -113,7 +113,10 @@ La plataforma ofrece:
 2. Lanzamiento oficial y monetización
 3. Expansión nacional/regional
 4. Consolidación y búsqueda de inversión
+5. Respondeme en español todo
 
 ---
 
 (La propuesta está diseñada para ayudar a priorizar funcionalidades y aclarar cómo se monetizará la plataforma mientras se desarrolla el producto.)
+
+todo esto es responsive, con un diseño moderno y limpio, y con una experiencia de usuario fluida tanto en desktop como en mobile. por que es PWA

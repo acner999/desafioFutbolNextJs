@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   const client = await pool.connect();
   try {
     const now = new Date();
-    const res = await client.query('SELECT id, team_id, invitee_email, role, status, expires_at FROM team_invites WHERE token = $1', [token]);
+    const res = await client.query('SELECT id, team_id, invitee_email, invitee_name, invitee_number, invitee_position, role, status, expires_at FROM team_invites WHERE token = $1', [token]);
     if (res.rowCount === 0) return NextResponse.json({ error: 'invite not found' }, { status: 404 });
 
     const invite = res.rows[0];
@@ -37,6 +37,19 @@ export async function POST(req: Request) {
       } else {
         await client.query('UPDATE users SET team_id = $1 WHERE id = $2', [invite.team_id, userId]);
       }
+      // If invite included player data, create player record for the team and attempt to link to the user
+      try {
+        if (invite.invitee_name || invite.invitee_position || invite.invitee_number) {
+          // insert player if not exists for that team
+          const exist = await client.query('SELECT id FROM players WHERE name = $1 AND team_id = $2 LIMIT 1', [invite.invitee_name, invite.team_id]);
+          if (exist.rowCount === 0) {
+            await client.query('INSERT INTO players (name, number, position, team_id, stats) VALUES ($1,$2,$3,$4,$5)', [invite.invitee_name, invite.invitee_number || null, invite.invitee_position || null, invite.team_id, JSON.stringify({})])
+          }
+        }
+      } catch (e) {
+        console.warn('failed to create player on invite accept', e)
+      }
+
       await client.query('UPDATE team_invites SET status = $1 WHERE id = $2', ['accepted', invite.id]);
 
       return NextResponse.json({ ok: true, status: 'accepted' });
