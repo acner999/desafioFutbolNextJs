@@ -1,6 +1,6 @@
 # TorneoApp
 
-Pequeña guía del proyecto TorneoApp (Next.js, Postgres). Incluye instrucciones rápidas para desarrollo, base de datos y autenticación.
+Plataforma digital para la gestión integral de torneos y desafíos de fútbol amateur. Permite a presidentes, managers y jugadores organizar, participar y seguimiento de torneos con autenticación segura y roles personalizados.
 
 ## Resumen
 - Aplicación Next.js (App Router) para gestión de torneos y desafíos amateur.
@@ -43,8 +43,3 @@ node node_modules/next/dist/bin/next build
 node node_modules/next/dist/bin/next start
 ```
 
-## Siguientes pasos recomendados
-- Añadir pruebas de integración para flujos de autenticación.
-- Verificar variables sociales en `.env.local` antes de probar Google/Twitter.
-
-Si quieres que ejecute las migraciones y el seed ahora en este entorno, dímelo y lo hago.
