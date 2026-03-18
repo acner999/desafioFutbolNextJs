@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       `INSERT INTO users (email, name, team_id, role, password_hash, cedula, email_verified)
        VALUES ($1,$2,$3,$4,$5,$6,$7)
        RETURNING id`,
-      [email, name, teamId, role, passwordHash, cedula || null, new Date()],
+      [email, name, teamId, role, passwordHash, cedula || null, false],
     )
     const userId = userRes.rows[0]?.id
 

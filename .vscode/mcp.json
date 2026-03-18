@@ -1,0 +1,37 @@
+{
+	"servers": {
+		"@marcelo-ochoa/server-postgres": {
+			"command": "npx",
+			"args": [
+				"@marcelo-ochoa/server-postgres@1.0.8",
+				"${input:CONNECTION_STRING}"
+			],
+			"env": {
+				"PG_USER": "${input:POSTGRES_USER}",
+				"PG_PASSWORD": "${input:POSTGRES_PASSWORD}"
+			},
+			"type": "stdio"
+		}
+		
+	},
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "CONNECTION_STRING",
+			"description": "Postgres connection (host:port/dbname or postgresql://host:port/dbname)",
+			"password": false
+		},
+		{
+			"type": "promptString",
+			"id": "POSTGRES_USER",
+			"description": "PostgreSQL user",
+			"password": false
+		},
+		{
+			"type": "promptString",
+			"id": "POSTGRES_PASSWORD",
+			"description": "PostgreSQL password",
+			"password": true
+		}
+	]
+}
